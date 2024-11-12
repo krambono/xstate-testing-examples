@@ -13,7 +13,13 @@ describe('machine 01', () => {
       actor.start();
 
       // then
-      expect(actor.getSnapshot().value).toBe('A');
+      const snapshot = actor.getSnapshot();
+
+      // I have an expect statement for the machine state.
+      expect(snapshot.value).toBe('A');
+
+      // I have an expect statement for the machine context.
+      expect(snapshot.context).toStrictEqual({ value: null });
     });
 
     // I test each transition for the current state
@@ -23,10 +29,12 @@ describe('machine 01', () => {
       actor.start();
 
       // when
-      actor.send({ type: 'next' });
+      actor.send({ type: 'next', value: 'my-value' });
 
       // then
-      expect(actor.getSnapshot().value).toBe('B');
+      const snapshot = actor.getSnapshot();
+      expect(snapshot.value).toBe('B');
+      expect(snapshot.context.value).toBe('my-value');
     });
   });
 
@@ -34,7 +42,7 @@ describe('machine 01', () => {
     it('should transition to state A when "prev" event is sent', () => {
       // given
       // I want to start my machine in state B
-      const resolvedState = machine.resolveState({ value: 'B' });
+      const resolvedState = machine.resolveState({ value: 'B', context: { value: 'my-value' } });
       const actor = createActor(machine, { snapshot: resolvedState });
       actor.start();
 
