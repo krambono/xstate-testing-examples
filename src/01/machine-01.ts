@@ -1,6 +1,6 @@
-import { assertEvent, assign, setup } from 'xstate';
+import { assign, setup } from 'xstate';
 
-export const machine = setup({
+export const machine01 = setup({
   types: {
     context: {} as {
       value: string | null;

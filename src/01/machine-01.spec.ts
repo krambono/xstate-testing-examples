@@ -1,5 +1,5 @@
 import { createActor } from 'xstate';
-import { machine } from './machine-01';
+import { machine01 } from './machine-01';
 
 describe('machine 01', () => {
   // describe blocks represent all the states of the machine
@@ -7,7 +7,7 @@ describe('machine 01', () => {
     it('should start in state A', () => {
       // given
       // I create an actor from the machine
-      const actor = createActor(machine);
+      const actor = createActor(machine01);
 
       // when
       actor.start();
@@ -25,7 +25,7 @@ describe('machine 01', () => {
     // I test each transition for the current state
     it("should transition to state B when 'next' event is sent", () => {
       // given
-      const actor = createActor(machine);
+      const actor = createActor(machine01);
       actor.start();
 
       // when
@@ -42,8 +42,8 @@ describe('machine 01', () => {
     it('should transition to state A when "prev" event is sent', () => {
       // given
       // I want to start my machine in state B
-      const resolvedState = machine.resolveState({ value: 'B', context: { value: 'my-value' } });
-      const actor = createActor(machine, { snapshot: resolvedState });
+      const resolvedState = machine01.resolveState({ value: 'B', context: { value: 'my-value' } });
+      const actor = createActor(machine01, { snapshot: resolvedState });
       actor.start();
 
       // when
