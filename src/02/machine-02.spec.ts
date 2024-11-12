@@ -34,7 +34,7 @@ describe('machine 02', () => {
       actor.start();
 
       // when
-      await sleep(0); // Is there a better way to wait machine to transition on next state?
+      await sleep(0); // Is there a better way to wait for the machine to transition to the next state?
 
       // then
       const snapshot = actor.getSnapshot();
@@ -50,7 +50,7 @@ describe('machine 02', () => {
       actor.start();
 
       // when
-      await sleep(0); // Is there a better way to wait machine to transition on next state?
+      await sleep(0); // Is there a better way to wait for the machine to transition to the next state?
 
       // then
       const snapshot = actor.getSnapshot();
