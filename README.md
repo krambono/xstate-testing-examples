@@ -1,4 +1,4 @@
-# Typescript starter
+# XState testing examples
 
 ## Dependencies installation:
 
