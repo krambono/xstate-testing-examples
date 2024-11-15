@@ -1,11 +1,11 @@
 import { createActor } from 'xstate';
-import { sleep } from '../utils';
+import { createFunctionMock, sleep } from '../utils';
 import { Dependencies } from './dependencies';
 import { createMachine02 } from './machine-02';
 
 describe('machine 02', () => {
   const dependencies = {
-    fetchData: jest.fn(),
+    fetchData: createFunctionMock<Dependencies['fetchData']>(),
   } satisfies Dependencies;
   const id = 'my-id';
 
